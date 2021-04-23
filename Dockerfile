@@ -4,11 +4,12 @@ LABEL maintainer="Sebastian Płudowski <sepludowski@gmail.com>"
 
 COPY qemu-arm-static /usr/bin/
 
-RUN apk --no-cache add bash unbound
+RUN apk add --update --no-cache curl ca-certificates s6 unbound
+RUN curl -o /etc/unbound/root.hints https://www.internic.net/domain/named.cache
 
-EXPOSE 53
+COPY files/ /
+RUN chmod a+x /service/*/run
 
-CMD ["/opt/unbound_run.sh"]
+EXPOSE 53/udp 53/tcp
 
-ADD ./files /opt/
-RUN chmod a+x /opt/*
+ENTRYPOINT ["/bin/s6-svscan","/service"]
