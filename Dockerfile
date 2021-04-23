@@ -10,5 +10,5 @@ EXPOSE 53
 
 CMD ["/opt/unbound_run.sh"]
 
-ADD ./files /opt/unbound
-RUN chmod a+x /opt/unbound/*
+ADD ./files /opt/
+RUN chmod a+x /opt/*
