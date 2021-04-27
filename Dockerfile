@@ -1,4 +1,4 @@
-FROM arm32v7/alpine:edge
+FROM arm32v7/alpine:3.12.7
 
 LABEL maintainer="Sebastian Płudowski <sepludowski@gmail.com>"
 
